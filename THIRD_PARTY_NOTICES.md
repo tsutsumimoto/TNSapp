@@ -47,17 +47,27 @@ Tutorial" is CC BY-NC-ND and is not included.)
 
 ### Components inside `[sfz~]` and `libelse_shared.dylib`
 
-According to sfizz's README (https://github.com/sfztools/sfizz), sfizz uses:
-Abseil (Apache-2.0, [licenses/Apache-2.0.txt](licenses/Apache-2.0.txt)),
-atomic_queue (MIT), KISS FFT (BSD-3-Clause), pugixml (MIT), cpuid (BSD-3-Clause),
-cephes (BSD-3-Clause), hiir (WTFPL v2), Surge tuning (MIT), filesystem
-(BSD-3-Clause), faust-libraries-derived DSP code, and dr_libs (MIT-0/public
-domain) for audio decoding. Symbol names in the shipped `sfz~` binary are
-consistent with Abseil, KISS FFT, pugixml, atomic_queue, cpuid, stb_vorbis,
-dr_flac and Faust-generated code; `libsndfile` is not linked. The ELSE shared
-library appears to contain TinySoundFont (MIT) and libsamplerate (BSD-2-Clause)
-code. Their own copyright and licence texts are available in the upstream
-repositories (links above).
+`[sfz~]` is built from the sfizz 1.2.2 source tree that ships with ELSE
+(`Source/Audio/sfz~/sfizz/` in https://github.com/porres/pd-else, tag
+v1.0-0-rc13). The licence texts found in that tree are reproduced in
+[licenses/sfizz-bundled-libraries.txt](licenses/sfizz-bundled-libraries.txt):
+abseil-cpp (Apache-2.0, [licenses/Apache-2.0.txt](licenses/Apache-2.0.txt)),
+atomic_queue (MIT), filesystem (MIT), cxxopts (MIT), simde (MIT), cephes
+(BSD-3-Clause), st_audiofile (BSD-2-Clause), fmidi and jsl (Boost 1.0),
+dr_libs (Public Domain or MIT-0), libaiff (MIT), stb_vorbis (MIT or Public
+Domain), and ThreadPool.h (SPDX: zlib). Not every one is necessarily linked
+into the `[sfz~]` binary (some are used only by command-line tools).
+The same file also reproduces the licences of KISS FFT (BSD-3-Clause), pugixml
+(MIT), cpuid (BSD-3-Clause), hiir (WTFPL v2), spline (BSD-3-Clause) and tunings
+(MIT, based on the Surge tuning library). The licence of the Faust-generated filter code
+in sfizz has not been checked yet. `libsndfile` is not linked.
+
+The ELSE shared library `libelse_shared.dylib` contains libsamplerate
+(BSD-2-Clause, Erik de Castro Lopo); see
+[licenses/libsamplerate-BSD-2-Clause.txt](licenses/libsamplerate-BSD-2-Clause.txt).
+No TinySoundFont strings were found in that binary. ELSE's GPL-licensed objects
+(`[sfont~]`, `[beat~]`, `[giga.rev~]`, `[conv~]`, `[lua]`) are not included in
+this repository.
 
 ## 3. Not included
 

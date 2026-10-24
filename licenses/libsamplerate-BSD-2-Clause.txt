@@ -1,0 +1,41 @@
+libsamplerate (BSD 2-Clause)
+Linked into libelse_shared.dylib (the string "libsamplerate-0.2.2 (c) 2002-2008 Erik de Castro Lopo"
+is present in the binary). Source as shipped with ELSE: Source/Shared/libsamplerate/
+(https://github.com/porres/pd-else, tag v1.0-0-rc13).
+
+Copyright notice as found in the headers of that source
+(Source/Shared/libsamplerate/common.h and samplerate.h):
+
+    Copyright (c) 2002-2021, Erik de Castro Lopo <erikd@mega-nerd.com>
+    (samplerate.h: Copyright (c) 2002-2016, Erik de Castro Lopo <erikd@mega-nerd.com>)
+    All rights reserved.
+
+    This code is released under 2-clause BSD license. Please see the
+    file at : https://github.com/libsndfile/libsamplerate/blob/master/COPYING
+
+The upstream COPYING file itself was not available when this notice was
+assembled. The licence named by the headers is the standard BSD 2-Clause
+licence, whose text (as reproduced in ELSE's own LICENSE/LICENSE BSD file) is:
+
+========================================================================
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
