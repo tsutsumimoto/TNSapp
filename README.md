@@ -20,7 +20,10 @@ first event; this application was written for the second one.
 
 * **Measurement and analysis of the data** (`TNSapp/patches/abs/parameters_chapter*.txt`):
   Scott Allen and Latent Media Lab., Kyoto Seika University (Faculty of Media
-  Expression). The data is included here with their permission.
+  Expression). The data is included here with their permission. Three rows were
+  derived by me for this application and are not part of the original data:
+  `coefficient`, `Major0Minor1` and `art-length` (the last one is calculated from
+  the text2emotion values in the original data).
 * **Application, sound programming and the conversion logic** (everything else in
   this repository): Reita Tsutsumimoto.
 
@@ -34,7 +37,8 @@ Latent Media Lab.; it is included as a demonstration data set for the applicatio
 
 石川九楊展のための書譜楽「歎異抄 No.18 Ver.2.0」（全2回の第2回）用に制作しました。第1回から
 開発に関わっています。データの計測・解析は Scott Allen 氏と京都精華大学 Latent Media Lab.
-によるもので、許可を得て同梱しています。アプリ・サウンドプログラム・変換ロジックは
+によるもので、許可を得て同梱しています（`coefficient`・`Major0Minor1`・`art-length` の3行は、
+アプリ用に元データから Reita Tsutsumimoto が変換した値です）。アプリ・サウンドプログラム・変換ロジックは
 Reita Tsutsumimoto の制作です。
 
 ## Build (macOS)
