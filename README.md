@@ -11,6 +11,32 @@ bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 > Status: work in progress. Detailed documentation (the parameter-mapping
 > logic, usage) will be added.
 
+## Background and credits
+
+TNSapp was made for the score-music performance 書譜楽「歎異抄 No.18〜いはんや悪人をや〜
+Ver.2.0」 (the second of two events; organiser: 石川九楊傘寿記念祝賀会実行委員会), held
+for the Ishikawa Kyūyō exhibition. I have been involved in the development since the
+first event; this application was written for the second one.
+
+* **Measurement and analysis of the data** (`TNSapp/patches/abs/parameters_chapter*.txt`):
+  Scott Allen and Latent Media Lab., Kyoto Seika University (Faculty of Media
+  Expression). The data is included here with their permission.
+* **Application, sound programming and the conversion logic** (everything else in
+  this repository): Reita Tsutsumimoto.
+
+`TNSapp/patches/abs/artlist_chapter*.txt` are articulation values derived from that
+data by my own conversion (see the patch); they are not part of the original data.
+
+The licence below applies to the source code. The analysis data was produced by
+Latent Media Lab.; it is included as a demonstration data set for the application.
+
+---
+
+石川九楊展のための書譜楽「歎異抄 No.18 Ver.2.0」（全2回の第2回）用に制作しました。第1回から
+開発に関わっています。データの計測・解析は Scott Allen 氏と京都精華大学 Latent Media Lab.
+によるもので、許可を得て同梱しています。アプリ・サウンドプログラム・変換ロジックは
+Reita Tsutsumimoto の制作です。
+
 ## Build (macOS)
 
 Requirements: Xcode, Projucer and [JUCE 9.0.2](https://juce.com/) (AGPLv3
