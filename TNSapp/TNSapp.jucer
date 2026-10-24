@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="JohPrl" name="TNSapp" projectType="guiapp" useAppConfig="0"
+              bundleIdentifier="io.github.tsutsumimoto.TNSapp"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+  <MAINGROUP id="ZZYzkp" name="TNSapp">
+    <GROUP id="{F9AF97CB-7878-A74A-B2E0-F2FDDB439451}" name="ExternalLibraries">
+      <GROUP id="{BCC6CEF6-6D41-BF9D-866D-BC11E0E2538B}" name="cyclone">
+        <FILE id="vEWTYv" name="cyclone.pd_darwin" compile="0" resource="0"
+              file="externals/cyclone/cyclone.pd_darwin" xcodeResource="1"/>
+        <FILE id="MAqZt4" name="gate.pd_darwin" compile="0" resource="0" file="externals/cyclone/gate.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="zSYxu7" name="histo.pd_darwin" compile="0" resource="0" file="externals/cyclone/histo.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="m7s1vA" name="iter.pd_darwin" compile="0" resource="0" file="externals/cyclone/iter.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="vP5bBG" name="listfunnel.pd_darwin" compile="0" resource="0"
+              file="externals/cyclone/listfunnel.pd_darwin" xcodeResource="1"/>
+        <FILE id="HwB5so" name="maximum.pd_darwin" compile="0" resource="0"
+              file="externals/cyclone/maximum.pd_darwin" xcodeResource="1"/>
+        <FILE id="sogHT6" name="mean.pd_darwin" compile="0" resource="0" file="externals/cyclone/mean.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="WzLm39" name="minimum.pd_darwin" compile="0" resource="0"
+              file="externals/cyclone/minimum.pd_darwin" xcodeResource="1"/>
+        <FILE id="O0pqXt" name="pak.pd_darwin" compile="0" resource="0" file="externals/cyclone/pak.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="IvCrpM" name="round.pd_darwin" compile="0" resource="0" file="externals/cyclone/round.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="ROUApL" name="scale.pd_darwin" compile="0" resource="0" file="externals/cyclone/scale.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="KxmshT" name="seq.pd_darwin" compile="0" resource="0" file="externals/cyclone/seq.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="lTRajO" name="switch.pd_darwin" compile="0" resource="0"
+              file="externals/cyclone/switch.pd_darwin" xcodeResource="1"/>
+        <FILE id="Bk8U1A" name="uzi.pd_darwin" compile="0" resource="0" file="externals/cyclone/uzi.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="WPUQqY" name="zl.indexmap.pd_darwin" compile="0" resource="0"
+              file="externals/cyclone/zl.indexmap.pd_darwin" xcodeResource="1"/>
+      </GROUP>
+      <GROUP id="{0EAA0B96-6F4F-D8D5-FF88-2423C72DCC7D}" name="else">
+        <FILE id="Ns4Zmn" name="args.pd_darwin" compile="0" resource="0" file="externals/else/args.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="ZoiQKL" name="datetime.pd_darwin" compile="0" resource="0"
+              file="externals/else/datetime.pd_darwin" xcodeResource="1"/>
+        <FILE id="WnXwFU" name="else.pd_darwin" compile="0" resource="0" file="externals/else/else.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="rVR7jo" name="hot.pd_darwin" compile="0" resource="0" file="externals/else/hot.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="K78Ilk" name="lace.pd_darwin" compile="0" resource="0" file="externals/else/lace.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="bvqzGq" name="lb.pd_darwin" compile="0" resource="0" file="externals/else/lb.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="xCsc2x" name="loadbanger.pd_darwin" compile="0" resource="0"
+              file="externals/else/loadbanger.pd_darwin" xcodeResource="1"/>
+        <FILE id="isCqBw" name="loop.pd_darwin" compile="0" resource="0" file="externals/else/loop.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="KobsBL" name="message.pd_darwin" compile="0" resource="0"
+              file="externals/else/message.pd_darwin" xcodeResource="1"/>
+        <FILE id="EqPzwM" name="router.pd_darwin" compile="0" resource="0"
+              file="externals/else/router.pd_darwin" xcodeResource="1"/>
+        <FILE id="Zmhsm8" name="routetype.pd_darwin" compile="0" resource="0"
+              file="externals/else/routetype.pd_darwin" xcodeResource="1"/>
+        <FILE id="JHlib3" name="sfz~.pd_darwin" compile="0" resource="0" file="externals/else/sfz~.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="l9Cuyj" name="slice.pd_darwin" compile="0" resource="0" file="externals/else/slice.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="kSo6LO" name="sort.pd_darwin" compile="0" resource="0" file="externals/else/sort.pd_darwin"
+              xcodeResource="1"/>
+        <FILE id="dyZKTv" name="wrap2.pd_darwin" compile="0" resource="0" file="externals/else/wrap2.pd_darwin"
+              xcodeResource="1"/>
+      </GROUP>
+      <FILE id="GIR0th" name="any2symbol.pd" compile="0" resource="0" file="externals/any2symbol.pd"
+            xcodeResource="1"/>
+      <FILE id="Xoulr2" name="count.pd" compile="0" resource="0" file="externals/count.pd"
+            xcodeResource="1"/>
+      <FILE id="szfjJ9" name="group.pd" compile="0" resource="0" file="externals/group.pd"
+            xcodeResource="1"/>
+      <FILE id="jAjTbG" name="iterate.pd" compile="0" resource="0" file="externals/iterate.pd"
+            xcodeResource="1"/>
+      <FILE id="PFMbC9" name="libelse_shared.dylib" compile="0" resource="0"
+            file="universal/libs/libelse_shared.dylib" xcodeResource="1"/>
+      <FILE id="hLasmt" name="list.seq.pd" compile="0" resource="0" file="externals/list.seq.pd"
+            xcodeResource="1"/>
+      <FILE id="jD3XsU" name="op.pd" compile="0" resource="0" file="externals/op.pd"
+            xcodeResource="1"/>
+      <FILE id="OpGmNG" name="rotate.pd" compile="0" resource="0" file="externals/rotate.pd"
+            xcodeResource="1"/>
+    </GROUP>
+    <GROUP id="{022E947E-4BF9-3BCA-7D63-AA6A9B54E0B3}" name="Resources">
+      <GROUP id="{ACE95FA3-6BAB-D1A1-4E87-CC8D4777BA7A}" name="abs">
+        <FILE id="RKFeYx" name="artlist_chapter1.txt" compile="0" resource="0"
+              file="patches/abs/artlist_chapter1.txt" xcodeResource="1"/>
+        <FILE id="b3oQa4" name="artlist_chapter10.txt" compile="0" resource="0"
+              file="patches/abs/artlist_chapter10.txt" xcodeResource="1"/>
+        <FILE id="k4aYmo" name="artlist_chapter18.txt" compile="0" resource="0"
+              file="patches/abs/artlist_chapter18.txt" xcodeResource="1"/>
+        <FILE id="9XknxK" name="artlist_chapter3.txt" compile="0" resource="0"
+              file="patches/abs/artlist_chapter3.txt" xcodeResource="1"/>
+        <FILE id="P1Ac5q" name="parameters_chapter1.txt" compile="0" resource="0"
+              file="patches/abs/parameters_chapter1.txt" xcodeResource="1"/>
+        <FILE id="1LwkA0" name="parameters_chapter10.txt" compile="0" resource="0"
+              file="patches/abs/parameters_chapter10.txt" xcodeResource="1"/>
+        <FILE id="l9SOS4" name="parameters_chapter18.txt" compile="0" resource="0"
+              file="patches/abs/parameters_chapter18.txt" xcodeResource="1"/>
+        <FILE id="eq5AXu" name="parameters_chapter3.txt" compile="0" resource="0"
+              file="patches/abs/parameters_chapter3.txt" xcodeResource="1"/>
+        <FILE id="adSdcg" name="permutations.txt" compile="0" resource="0"
+              file="patches/abs/permutations.txt" xcodeResource="1"/>
+        <FILE id="wiTWJ2" name="RT.clone.makeMidiSeq.pd" compile="0" resource="0"
+              file="patches/abs/RT.clone.makeMidiSeq.pd" xcodeResource="1"/>
+        <FILE id="eyyuQN" name="RT.filename.yMDH.pd" compile="0" resource="0"
+              file="patches/abs/RT.filename.yMDH.pd" xcodeResource="1"/>
+      </GROUP>
+      <FILE id="mfJ1JJ" name="main.pd" compile="0" resource="0" file="patches/main.pd"
+            xcodeResource="1"/>
+    </GROUP>
+    <GROUP id="{4A1B6144-3444-AE5B-5225-D10EBB93CD9A}" name="Source">
+      <FILE id="xEHQyV" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="Ls27rO" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="bvb60Z" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="UIEdoz" name="ParameterLookAndFeel.h" compile="0" resource="0"
+            file="Source/ParameterLookAndFeel.h"/>
+      <FILE id="onYiIh" name="PdBase.hpp" compile="0" resource="0" file="libpd/cpp/PdBase.hpp"/>
+      <FILE id="pMWLks" name="PdMidiReceiver.hpp" compile="0" resource="0"
+            file="libpd/cpp/PdMidiReceiver.hpp"/>
+      <FILE id="dhyZTl" name="PdReceiver.hpp" compile="0" resource="0" file="libpd/cpp/PdReceiver.hpp"/>
+      <FILE id="cPKB7A" name="PdTypes.hpp" compile="0" resource="0" file="libpd/cpp/PdTypes.hpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors_headless" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="TNSapp"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="TNSapp"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="TNSapp"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="TNSapp"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraLinkerFlags="-lpd -ldl -lm"
+               postbuildCommand="DST=&quot;$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/Resources&quot; &amp;&amp; rsync -a --delete &quot;$SRCROOT/../../patches/sfz/&quot; &quot;$DST/sfz/&quot; &amp;&amp; rm -rf &quot;$DST/else&quot; &amp;&amp; TMP=&quot;$(mktemp -d)&quot; &amp;&amp; rsync -a --include=&quot;*.pd&quot; --exclude=&quot;*&quot; &quot;$SRCROOT/../../externals/else-abstractions/&quot; &quot;$TMP/&quot; &amp;&amp; sed -i &quot;&quot; &quot;s# else/# #g&quot; &quot;$TMP&quot;/*.pd &amp;&amp; rsync -a &quot;$TMP/&quot; &quot;$DST/&quot; &amp;&amp; rm -rf &quot;$TMP&quot;"
+               xcodeValidArchs="arm64,x86_64" appSandbox="0">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="TNSapp" headerPath="../../libpd/libpd_wrapper&#10;../../libpd/pure-data/src&#10;../../libpd/cpp"
+                       libraryPath="../../universal/libs"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="TNSapp" headerPath="../../libpd/libpd_wrapper&#10;../../libpd/pure-data/src&#10;../../libpd/cpp"
+                       libraryPath="../../universal/libs" linkTimeOptimisation="0" customXcodeFlags="   DEAD_CODE_STRIPPING = NO"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

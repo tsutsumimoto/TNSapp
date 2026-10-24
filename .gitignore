@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Xcode / build outputs
+xcuserdata/
+TNSapp/Builds/
+TNSapp/build-*/
+
+# local data and backups
+TNSapp/patches/exports/
+*.orig
+
+# Derived from Logic Pro Sample Content: not redistributable (Apple licence). Never commit.
+*.sf2
+*.sf3
