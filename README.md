@@ -1,15 +1,15 @@
 # TNSapp
 
 A macOS application (JUCE + libpd) that turns the stroke data of the Ishikawa
-Kyūyō exhibition into a score. The musical logic lives in a Pure Data patch
+Kyūyō exhibition into MIDI data for a string quartet and a piano. The musical logic lives in a Pure Data patch
 (`TNSapp/patches/main.pd`); the C++ part (`TNSapp/Source`) is the GUI and the
 bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 
-石川九楊展の筆跡データから楽譜を生成する macOS アプリです。変換ロジックは Pure Data のパッチ
+石川九楊展の筆跡データから、弦楽四重奏とピアノの MIDI データを生成する macOS アプリです。変換ロジックは Pure Data のパッチ
 (`TNSapp/patches/main.pd`)、C++ 側は GUI と libpd への橋渡しです。
 
-> Status: work in progress. Detailed documentation (the parameter-mapping
-> logic, usage) will be added.
+> How the input data is converted into the output: see
+> [docs/parameter-mapping.md](docs/parameter-mapping.md) (Japanese).
 
 ## Background and credits
 
@@ -40,6 +40,90 @@ Latent Media Lab.; it is included as a demonstration data set for the applicatio
 によるもので、許可を得て同梱しています（`coefficient`・`Major0Minor1`・`art-length` の3行は、
 アプリ用に元データから Reita Tsutsumimoto が変換した値です）。アプリ・サウンドプログラム・変換ロジックは
 Reita Tsutsumimoto の制作です。
+
+## Usage
+
+TNSapp plays the stroke data of one chapter as a string quartet and a piano,
+and writes the result as MIDI files. A short description of the window follows;
+the exact conversion rules are in [docs/parameter-mapping.md](docs/parameter-mapping.md).
+
+**Basic flow**
+
+1. Choose a **chapter** (第1章 / 第3章 / 第10章 / 結 = chapter 18).
+2. Choose which input drives which output in the **Parameter Sets** table
+   (see below), the **Beat Variation** and the options.
+3. Press **Compile**. Nothing changes until you press it; every change of the
+   settings needs a new Compile. If you press it during playback, the piece
+   restarts from the beginning with the new settings.
+4. Press **Play/Stop**. Press **Save** to write the settings and the MIDI files.
+
+**Transport**
+
+* **Play/Stop**: starts and stops playback. Stopping returns to the beginning.
+* **Pause**: pauses; pressing it again resumes from the same place. Pressing
+  Stop while paused returns to the beginning.
+* **Loop**: repeats the playback.
+* **BPM** (60–200, default 120): tempo.
+* **Position / Last Pos / Total Time**: the current position in the data, the
+  last position, and the length of the piece at the current BPM.
+* **String / Piano**: switch the sound of each group on and off, like mute
+  buttons in a DAW (light = sounding, dark = muted).
+
+**Settings**
+
+* **Parameter Sets**: each column is an output (Octave, Permutation, Chord,
+  Key-1/2/3, Pan-1/2, Velocity, Beat, Articulation) and each row is an input
+  (`penspeed`, `angle`, `penblur`, `erosion`, `penslight`, `coefficient`,
+  `width`, `height`, `speed`, `depth`, `baseline`). Select exactly one input per
+  output. The names are explained in the parameter-mapping document.
+* **Beat Variation**: *Simple* and *Complex* use different sets of note values
+  (Complex has more, including dotted notes).
+* **Beat-invert**, **Arpeggio-invert**, **Pan-invert**: reverse the direction of
+  the corresponding conversion (for example, short notes become long ones). In a
+  small window the button is shown as "Arpeggio…".
+* **Default**: resets the table, the chapter, Beat Variation, the three invert
+  options and the BPM to their initial values. Press Compile afterwards.
+
+**Files** (in `~/Documents/TNSapp/`)
+
+* **Save** asks for two names: a preset (`presets/Preset_<date>_<time>.txt`, the
+  settings and BPM) and a folder `save/Save_<date>_<time>/` that receives one
+  MIDI file per part (for example `cello_20261025_21.mid`).
+* **Load File** reads a preset from `presets/` and compiles it automatically.
+* `backup/` receives an automatic backup each time Compile is pressed. It is
+  never cleaned up, so delete old files from time to time.
+
+**MIDI files**
+
+Each Save writes, for every part, a `.mid` file and a `.txt` file with the same
+sequence as text (`cello`, `viola`, `violin1`, `violin2`, `piano`). Three more
+files carry information that is not written into the notes themselves, because
+the way to select articulations differs from one software to another. They are
+stored as note numbers and have to be assigned by hand in your DAW or sampler.
+
+| File | Note number | Meaning |
+|---|---|---|
+| `string-articulation` | 10 / 11 / 12 / 13 / 14 / 15 | none / slur / tenuto / accent / staccato / spiccato |
+| `piano-articulation` | 10 / 11 / 12 | no pedal / sustain pedal / damper (a muffled sound) |
+| `piano-arpeggio` | 10 / 11 | chord played at once / arpeggio |
+
+(The "damper" here is not the damper pedal of a real piano; it is a setting that
+narrows the low-pass filter to muffle the sound. See the parameter-mapping document.)
+
+The exported note files contain note-on events only; there are no note-off
+events. A rest, or the end of a note, is marked by a note-on of **note number 0**.
+In Logic Pro, select the region and choose *Trim Note Ends to Following Notes*
+(*ノートの終了位置から後続のノートまでトリム*); the length of each note then matches
+the plan, and the note-0 events can be deleted.
+
+---
+
+**使い方（要約）**: 章を選び、Parameter Sets の表で「どの入力をどの出力につなぐか」と Beat
+Variation などを選び、**Compile** を押してから Play します（設定を変えるたびに Compile が必要です）。
+Save で設定（`presets`）と、パートごとの MIDI（`save/Save_日時/`）を `~/Documents/TNSapp/`
+に書き出します。Load File は `presets` の設定を読み込み、自動で Compile します。
+String / Piano ボタンは、DAW のミュートのように、音のオン・オフを切り替えます。
+MIDI には note-on だけが入り、ノートの終わりはノートナンバー 0 で示します（Logic では「後続のノートまでトリム」で長さがそろいます）。奏法とアルペジオは、別ファイルにノートナンバーで書き出すので、DAW 側で手作業で割り当てます。
 
 ## Build (macOS)
 
@@ -73,6 +157,11 @@ option), Apple Silicon or Intel.
 * In Debug builds, about 48 `couldn't create` lines appear in the console at
   start-up, before the patch is opened. They come from the Tcl GUI snippets of
   cyclone/ELSE and have no effect on the sound or the behaviour.
+* The window is laid out for a large screen. In a small window some labels are
+  shortened (the Arpeggio-invert button is shown as "Arpeggio…").
+* The exported MIDI has no note-off events (see *MIDI files* above). Writing
+  proper note-offs is planned.
+* The `backup/` folder grows with every Compile and is never cleaned up.
 * Only macOS has been tested.
 
 ## Licence
