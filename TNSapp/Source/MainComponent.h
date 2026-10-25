@@ -183,17 +183,17 @@ public pd::PdReceiver
     };
     
     // 11種類のパラメーターセット
-    RadioButtonPanel sets1Panel { juce::CharPointer_UTF8("Octaveの選択") };
-    RadioButtonPanel sets2Panel { juce::CharPointer_UTF8("転回系の選択") };
-    RadioButtonPanel sets3Panel { juce::CharPointer_UTF8("Chordの選択") };
-    RadioButtonPanel sets4Panel { juce::CharPointer_UTF8("Keyの選択1") };
-    RadioButtonPanel sets5Panel { juce::CharPointer_UTF8("Keyの選択2") };
-    RadioButtonPanel sets6Panel { juce::CharPointer_UTF8("Keyの選択3") };
-    RadioButtonPanel sets7Panel { juce::CharPointer_UTF8("Panの選択1") };
-    RadioButtonPanel sets8Panel { juce::CharPointer_UTF8("Panの選択2") };
-    RadioButtonPanel sets9Panel { juce::CharPointer_UTF8("Velocityに変換") };
-    RadioButtonPanel sets10Panel { juce::CharPointer_UTF8("音価に変換") };
-    RadioButtonPanel sets11Panel { juce::CharPointer_UTF8("Articulationに変換") };
+    RadioButtonPanel sets1Panel { juce::CharPointer_UTF8("Octave") };
+    RadioButtonPanel sets2Panel { juce::CharPointer_UTF8("Permutation") };
+    RadioButtonPanel sets3Panel { juce::CharPointer_UTF8("Chord") };
+    RadioButtonPanel sets4Panel { juce::CharPointer_UTF8("Key-1") };
+    RadioButtonPanel sets5Panel { juce::CharPointer_UTF8("Key-2") };
+    RadioButtonPanel sets6Panel { juce::CharPointer_UTF8("Key-3") };
+    RadioButtonPanel sets7Panel { juce::CharPointer_UTF8("Pan-1") };
+    RadioButtonPanel sets8Panel { juce::CharPointer_UTF8("Pan-2") };
+    RadioButtonPanel sets9Panel { juce::CharPointer_UTF8("Velocity") };
+    RadioButtonPanel sets10Panel { juce::CharPointer_UTF8("Beat") };
+    RadioButtonPanel sets11Panel { juce::CharPointer_UTF8("Articulation") };
     
     // パラメーター名ラベル（左側）
     struct ParamLabelSet
@@ -203,17 +203,17 @@ public pd::PdReceiver
         ParamLabelSet()
         {
             const juce::String labelTexts[] = {
-                juce::CharPointer_UTF8("筆の速度"),
-                juce::CharPointer_UTF8("角度"),
-                juce::CharPointer_UTF8("筆の掠れ"),
-                juce::CharPointer_UTF8("侵食"),
-                juce::CharPointer_UTF8("筆の微動"),
-                juce::CharPointer_UTF8("係数"),
-                juce::CharPointer_UTF8("画横幅"),
-                juce::CharPointer_UTF8("画縦幅"),
-                juce::CharPointer_UTF8("速度"),
-                juce::CharPointer_UTF8("深度"),
-                juce::CharPointer_UTF8("基準線")
+                juce::CharPointer_UTF8("penspeed"),
+                juce::CharPointer_UTF8("angle"),
+                juce::CharPointer_UTF8("penblur"),
+                juce::CharPointer_UTF8("erosion"),
+                juce::CharPointer_UTF8("penslight"),
+                juce::CharPointer_UTF8("coefficient"),
+                juce::CharPointer_UTF8("width"),
+                juce::CharPointer_UTF8("height"),
+                juce::CharPointer_UTF8("speed"),
+                juce::CharPointer_UTF8("depth"),
+                juce::CharPointer_UTF8("baseline")
             };
             
             for (int i = 0; i < 11; ++i)
