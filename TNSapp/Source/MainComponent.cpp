@@ -1,4 +1,9 @@
 #include "MainComponent.h"
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <utility>
+#include <vector>
 
 // MainComponent.cpp の既存のインクルードとクラス定義の後に追加
 
@@ -1211,6 +1216,185 @@ void MainComponent::receiveBang(const std::string& dest)
     }
 }
 
+
+// ---------------------------------------------------------------------------
+// MIDI の後処理（2026-10-25 追加）
+// パッチが書き出す .mid には note-on しかなく、休符・音の終わりは、低い音の note-on
+// （ノート 0、ピアノでは 0 に +12 したノート 12）で代用されている。
+// ここで次の処理をする。
+//  1. 次のイベントの時刻に note-off を足す。各音の長さは「次のイベントの時刻まで」で、
+//     Logic の「後続のノートまでトリム」と同じ結果になる。
+//  2. 休符の目印（kMinPlayableNote 未満）を消す。
+//  3. ピアノだけ、piano-arpeggio のファイルが「分散和音（ノート 11）」を示す区間では、
+//     和音の音を、音の長さの 1/4 ずつ、順に遅らせる（パッチの再生と同じ考え方）。
+// 奏法・アルペジオのファイル（*-articulation, *-arpeggio）は、ノートナンバーが
+// 情報そのものなので、対象外にする。
+// ---------------------------------------------------------------------------
+static constexpr int kMinPlayableNote = 21;  // ピアノの最低音 A0
+static constexpr int kArpeggioOnNote  = 11;  // piano-arpeggio のノート：11＝分散和音、10＝同時
+
+// piano-arpeggio の .mid から、分散和音のオン・オフの切り替え（時刻, ノート）を読む
+static std::vector<std::pair<double, int>> readArpeggioStates (const juce::File& arpeggioFile)
+{
+    std::vector<std::pair<double, int>> states;
+    juce::MidiFile midi;
+    juce::FileInputStream in (arpeggioFile);
+    if (! in.openedOk() || ! midi.readFrom (in, false) || midi.getNumTracks() < 1)
+        return states;
+
+    const auto* track = midi.getTrack (0);
+    for (int i = 0; i < track->getNumEvents(); ++i)
+    {
+        const auto& m = track->getEventPointer (i)->message;
+        if (m.isNoteOn())
+            states.emplace_back (m.getTimeStamp(), m.getNoteNumber());
+    }
+    std::stable_sort (states.begin(), states.end(),
+                      [] (const auto& x, const auto& y) { return x.first < y.first; });
+    return states;
+}
+
+static bool isArpeggioAt (const std::vector<std::pair<double, int>>& states, double time)
+{
+    int note = 10; // 初期値：同時
+    for (const auto& st : states)
+    {
+        if (st.first <= time) note = st.second;
+        else break;
+    }
+    return note == kArpeggioOnNote;
+}
+
+// arpeggioStates が nullptr でなければ、分散和音を反映する（ピアノ用）
+static bool addNoteOffsToMidiFile (const juce::File& file,
+                                   const std::vector<std::pair<double, int>>* arpeggioStates)
+{
+    juce::MidiFile midi;
+    {
+        juce::FileInputStream in (file);
+        if (! in.openedOk() || ! midi.readFrom (in, false)) // false: 読み込み時に note-off を自動追加しない
+            return false;
+    }
+
+    const int ticksPerQuarter = midi.getTimeFormat();
+    if (ticksPerQuarter <= 0)
+        return false; // SMPTE 形式は対象外
+
+    juce::MidiFile outFile;
+    outFile.setTicksPerQuarterNote (ticksPerQuarter);
+
+    for (int trackIndex = 0; trackIndex < midi.getNumTracks(); ++trackIndex)
+    {
+        const auto* track = midi.getTrack (trackIndex);
+        juce::MidiMessageSequence outSeq;
+
+        // note-on 以外（コントロールチェンジ、プログラムチェンジ、メタイベント）はそのまま残す。
+        // 時刻ごとに note-on をまとめる。
+        std::map<double, std::vector<juce::MidiMessage>> noteOnsByTime;
+        for (int i = 0; i < track->getNumEvents(); ++i)
+        {
+            const auto& m = track->getEventPointer (i)->message;
+            if (m.isNoteOn()) // 速度 0 の note-on は、ここでは note-on とみなさない
+                noteOnsByTime[m.getTimeStamp()].push_back (m);
+            else if (! m.isEndOfTrackMetaEvent())
+                outSeq.addEvent (m);
+        }
+
+        std::vector<double> times;
+        for (const auto& kv : noteOnsByTime)
+            times.push_back (kv.first);
+
+        // 最後の音は、次のイベントがないので、直前の間隔と同じ長さにする
+        const double lastGap = times.size() >= 2 ? juce::jmax (1.0, times.back() - times[times.size() - 2]) : 1.0;
+
+        std::vector<juce::MidiMessage> sounding; // 今鳴っている音（次の時刻で note-off にする）
+        for (size_t gi = 0; gi < times.size(); ++gi)
+        {
+            const double time = times[gi];
+            const double nextTime = (gi + 1 < times.size()) ? times[gi + 1] : time + lastGap;
+            const double length = nextTime - time;
+
+            // 前の時刻から鳴っていた音を止める（note-off を、同じ時刻の note-on より先に入れる）
+            for (const auto& on : sounding)
+                outSeq.addEvent (juce::MidiMessage::noteOff (on.getChannel(), on.getNoteNumber(), (juce::uint8) 0), time);
+            sounding.clear();
+
+            const bool arpeggio = arpeggioStates != nullptr && isArpeggioAt (*arpeggioStates, time);
+
+            // 休符の目印（ノート 0、ノート 12 など）は書き出さない。
+            // 分散和音では、残った音を、ファイルに書かれている順に、音の長さの 1/4 ずつ遅らせる。
+            int k = 0;
+            for (const auto& on : noteOnsByTime[time])
+            {
+                if (on.getNoteNumber() < kMinPlayableNote)
+                    continue;
+
+                auto note = on;
+                if (arpeggio)
+                    note.setTimeStamp (time + std::round (k * length / 4.0));
+                outSeq.addEvent (note);
+                sounding.push_back (note);
+                ++k;
+            }
+        }
+
+        // 最後のグループの音を止める
+        if (! times.empty())
+            for (const auto& on : sounding)
+                outSeq.addEvent (juce::MidiMessage::noteOff (on.getChannel(), on.getNoteNumber(), (juce::uint8) 0),
+                                 times.back() + lastGap);
+
+        outSeq.sort(); // 同じ時刻では、先に入れた順（note-off → note-on）が保たれる
+        outSeq.updateMatchedPairs();
+        outFile.addTrack (outSeq);
+    }
+
+    // 上書き（途中で失敗してもファイルを壊さないよう、一時ファイルに書いてから置き換える）
+    juce::File tmp = file.getSiblingFile (file.getFileName() + ".tmp");
+    {
+        juce::FileOutputStream out (tmp);
+        if (! out.openedOk())
+            return false;
+        out.setPosition (0);
+        out.truncate();
+        if (! outFile.writeTo (out, 1))
+            return false;
+    }
+    return tmp.moveFileTo (file);
+}
+
+static void addNoteOffsToInstrumentMidiFiles (const juce::File& folder)
+{
+    // cello_…, viola_…, violin1_…, violin2_…, piano_… の .mid だけが対象
+    for (const auto& f : folder.findChildFiles (juce::File::findFiles, false, "*.mid"))
+    {
+        const auto name = f.getFileName();
+        const bool isString = name.startsWith ("cello_") || name.startsWith ("viola_")
+                           || name.startsWith ("violin1_") || name.startsWith ("violin2_");
+        const bool isPiano = name.startsWith ("piano_");
+        if (! isString && ! isPiano)
+            continue;
+
+        bool ok = false;
+        if (isPiano)
+        {
+            // piano_<日時>.mid に対応する piano-arpeggio_<日時>.mid
+            const auto arpeggioFile = f.getSiblingFile ("piano-arpeggio_" + name.fromFirstOccurrenceOf ("piano_", false, false));
+            std::vector<std::pair<double, int>> states;
+            if (arpeggioFile.existsAsFile())
+                states = readArpeggioStates (arpeggioFile);
+            ok = addNoteOffsToMidiFile (f, states.empty() ? nullptr : &states);
+        }
+        else
+        {
+            ok = addNoteOffsToMidiFile (f, nullptr);
+        }
+
+        if (! ok)
+            DBG ("Could not add note-offs to: " + f.getFullPathName());
+    }
+}
+
 // MainComponent.cpp に追加するファイル操作関連のコード（エラー修正版）
 void MainComponent::saveTextFile()
 {
@@ -1297,7 +1481,10 @@ void MainComponent::saveTextFile()
                         DBG("Requested PureData to save data in: " + saveFolder.getFullPathName());
                         
                         // 保存完了メッセージを表示
-                        juce::Timer::callAfterDelay(1000, [dirName]() {
+                        juce::Timer::callAfterDelay(1000, [dirName, saveFolder]() {
+                            // パッチが書き出した .mid に、note-off を足す（休符の目印は消す）
+                            addNoteOffsToInstrumentMidiFiles (saveFolder);
+
                             juce::AlertWindow::showMessageBoxAsync(juce::AlertWindow::InfoIcon,
                                                                    "Save Complete",
                                                                    "Data saved as: " + dirName);
