@@ -95,28 +95,31 @@ the exact conversion rules are in [docs/parameter-mapping.md](docs/parameter-map
 
 **MIDI files**
 
-Each Save writes, for every part, a `.mid` file and a `.txt` file with the same
-sequence as text (`cello`, `viola`, `violin1`, `violin2`, `piano`). Three more
-files carry information that is not written into the notes themselves, because
-the way to select articulations differs from one software to another. They are
-stored as note numbers and have to be assigned by hand in your DAW or sampler.
+Each Save writes, for every part, a `.mid` file and a `.txt` file
+(`cello`, `viola`, `violin1`, `violin2`, `piano`).
+
+* The `.mid` files contain note-on and note-off events. Each note lasts until the
+  next event, and rests are gaps. In the piano file, the notes of a chord are
+  shifted one after another by a quarter of the note length in the passages where
+  the arpeggio is on, as in the playback inside the app. (When the patch writes the
+  files, rests are marked by low note numbers, 0 or 12. TNSapp removes these markers
+  and adds the note-offs right after saving.)
+* The `.txt` files are the raw sequences written by the patch (time, status, note,
+  velocity). They contain note-on events only; the rest markers (note 0, and note 12
+  in the piano file) are still in them, and the arpeggio is not applied.
+
+Three more files carry information that is not written into the notes themselves,
+because the way to select articulations differs from one software to another. They
+are stored as note numbers and have to be assigned by hand in your DAW or sampler.
 
 | File | Note number | Meaning |
 |---|---|---|
 | `string-articulation` | 10 / 11 / 12 / 13 / 14 / 15 | none / slur / tenuto / accent / staccato / spiccato |
 | `piano-articulation` | 10 / 11 / 12 | no pedal / sustain pedal / damper (a muffled sound) |
-| `piano-arpeggio` | 10 / 11 | chord played at once / arpeggio |
+| `piano-arpeggio` | 10 / 11 | chord played at once / arpeggio (already applied to the piano `.mid`; kept for reference) |
 
 (The "damper" here is not the damper pedal of a real piano; it is a setting that
 narrows the low-pass filter to muffle the sound. See the parameter-mapping document.)
-
-The exported note files contain note-on events only; there are no note-off
-events. A rest, or the end of a note, is marked by a note-on of **note number 0**
-(in the piano file the same marker also appears as **note number 12**, which is
-below the lowest piano key and is not a sound to be played).
-In Logic Pro, select the region and choose *Trim Note Ends to Following Notes*
-(*ノートの終了位置から後続のノートまでトリム*); the length of each note then matches
-the plan, and the note-0 (and note-12) events can be deleted.
 
 ---
 
@@ -125,7 +128,7 @@ Variation などを選び、**Compile** を押してから Play します（設�
 Save で設定（`presets`）と、パートごとの MIDI（`save/Save_日時/`）を `~/Documents/TNSapp/`
 に書き出します。Load File は `presets` の設定を読み込み、自動で Compile します。
 String / Piano ボタンは、DAW のミュートのように、音のオン・オフを切り替えます。
-MIDI には note-on だけが入り、ノートの終わりはノートナンバー 0 で示します（Logic では「後続のノートまでトリム」で長さがそろいます）。奏法とアルペジオは、別ファイルにノートナンバーで書き出すので、DAW 側で手作業で割り当てます。
+MIDI には note-on と note-off が入り、休符はすき間になります（ピアノは、分散和音の区間で、和音を少しずつずらして書き出します）。奏法は、別ファイルにノートナンバーで書き出すので、DAW 側で手作業で割り当てます。
 
 ## Build (macOS)
 
@@ -161,8 +164,6 @@ option), Apple Silicon or Intel.
   cyclone/ELSE and have no effect on the sound or the behaviour.
 * The window is laid out for a large screen. In a small window some labels are
   shortened (the Arpeggio-invert button is shown as "Arpeggio…").
-* The exported MIDI has no note-off events (see *MIDI files* above). Writing
-  proper note-offs is planned.
 * The `backup/` folder grows with every Compile and is never cleaned up.
 * Only macOS has been tested.
 
