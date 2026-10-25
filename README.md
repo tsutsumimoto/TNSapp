@@ -111,10 +111,12 @@ stored as note numbers and have to be assigned by hand in your DAW or sampler.
 narrows the low-pass filter to muffle the sound. See the parameter-mapping document.)
 
 The exported note files contain note-on events only; there are no note-off
-events. A rest, or the end of a note, is marked by a note-on of **note number 0**.
+events. A rest, or the end of a note, is marked by a note-on of **note number 0**
+(in the piano file the same marker also appears as **note number 12**, which is
+below the lowest piano key and is not a sound to be played).
 In Logic Pro, select the region and choose *Trim Note Ends to Following Notes*
 (*ノートの終了位置から後続のノートまでトリム*); the length of each note then matches
-the plan, and the note-0 events can be deleted.
+the plan, and the note-0 (and note-12) events can be deleted.
 
 ---
 
