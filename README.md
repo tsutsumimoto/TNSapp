@@ -8,8 +8,8 @@ bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 石川九楊展の筆跡データから、弦楽四重奏とピアノの MIDI データを生成する macOS アプリです。変換ロジックは Pure Data のパッチ
 (`TNSapp/patches/main.pd`)、C++ 側は GUI と libpd への橋渡しです。
 
-> How the input data is converted into the output: see
-> [docs/parameter-mapping.md](docs/parameter-mapping.md) (Japanese).
+> A detailed description of how the input data is converted into the output will be
+> published separately.
 
 ## Background and credits
 
@@ -45,7 +45,7 @@ Reita Tsutsumimoto の制作です。
 
 TNSapp plays the stroke data of one chapter as a string quartet and a piano,
 and writes the result as MIDI files. A short description of the window follows;
-the exact conversion rules are in [docs/parameter-mapping.md](docs/parameter-mapping.md).
+the detailed conversion rules will be published separately.
 
 **Basic flow**
 
@@ -75,7 +75,7 @@ the exact conversion rules are in [docs/parameter-mapping.md](docs/parameter-map
   Key-1/2/3, Pan-1/2, Velocity, Beat, Articulation) and each row is an input
   (`penspeed`, `angle`, `penblur`, `erosion`, `penslight`, `coefficient`,
   `width`, `height`, `speed`, `depth`, `baseline`). Select exactly one input per
-  output. The names are explained in the parameter-mapping document.
+  output.
 * **Beat Variation**: *Simple* and *Complex* use different sets of note values
   (Complex has more, including dotted notes).
 * **Beat-invert**, **Arpeggio-invert**, **Pan-invert**: reverse the direction of
@@ -119,7 +119,7 @@ are stored as note numbers and have to be assigned by hand in your DAW or sample
 | `piano-arpeggio` | 10 / 11 | chord played at once / arpeggio (already applied to the piano `.mid`; kept for reference) |
 
 (The "damper" here is not the damper pedal of a real piano; it is a setting that
-narrows the low-pass filter to muffle the sound. See the parameter-mapping document.)
+narrows the low-pass filter to muffle the sound.)
 
 ---
 
