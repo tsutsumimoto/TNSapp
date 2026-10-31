@@ -6,7 +6,7 @@ of JUCE's dual licence.
 
 This repository and the built application include or use the third-party
 components below. Full licence texts are in [`licenses/`](licenses/).
-Last reviewed: 2026-10-24.
+Last reviewed: 2026-10-31.
 
 ## 1. Audio samples (`TNSapp/patches/sfz/`)
 
@@ -49,7 +49,7 @@ Tutorial" is CC BY-NC-ND and is not included.)
 
 `[sfz~]` is built from the sfizz 1.2.2 source tree that ships with ELSE
 (`Source/Audio/sfz~/sfizz/` in https://github.com/porres/pd-else, tag
-v1.0-0-rc13). The licence texts found in that tree are reproduced in
+v.1.0-rc13). The licence texts found in that tree are reproduced in
 [licenses/sfizz-bundled-libraries.txt](licenses/sfizz-bundled-libraries.txt):
 abseil-cpp (Apache-2.0, [licenses/Apache-2.0.txt](licenses/Apache-2.0.txt)),
 atomic_queue (MIT), filesystem (MIT), cxxopts (MIT), simde (MIT), cephes
@@ -59,8 +59,12 @@ Domain), and ThreadPool.h (SPDX: zlib). Not every one is necessarily linked
 into the `[sfz~]` binary (some are used only by command-line tools).
 The same file also reproduces the licences of KISS FFT (BSD-3-Clause), pugixml
 (MIT), cpuid (BSD-3-Clause), hiir (WTFPL v2), spline (BSD-3-Clause) and tunings
-(MIT, based on the Surge tuning library). The licence of the Faust-generated filter code
-in sfizz has not been checked yet. `libsndfile` is not linked.
+(MIT, based on the Surge tuning library). The Faust-generated filter code in sfizz
+declares BSD-2-Clause in its file headers (author: Jean Pierre Cimalando; generated
+with Faust 2.37.3). The Faust sources of some of these filters also build on GRAME's
+`rbj_filters` ("LGPL with exception") and on Eric Tarr's Sallen-Key filters
+("MIT-style STK-4.3 license"); their licence texts are not reproduced here. TNSapp's
+SFZ files use only the `hpf_1p` filter, which uses neither. `libsndfile` is not linked.
 
 The ELSE shared library `libelse_shared.dylib` contains libsamplerate
 (BSD-2-Clause, Erik de Castro Lopo); see
