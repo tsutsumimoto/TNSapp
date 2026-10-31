@@ -27,6 +27,10 @@ first event; this application was written for the second one.
 * **Application, sound programming and the conversion logic** (everything else in
   this repository): Reita Tsutsumimoto.
 
+**AI assistance.** The Pure Data patch and the conversion logic are my own design. The
+C++ part (GUI, libpd bridge, MIDI post-processing) and this README were written with the
+help of an AI assistant (Claude); I built and tested the result.
+
 `TNSapp/patches/abs/artlist_chapter*.txt` are articulation values derived from that
 data by my own conversion (see the patch); they are not part of the original data.
 
@@ -40,6 +44,9 @@ Latent Media Lab.; it is included as a demonstration data set for the applicatio
 によるもので、許可を得て同梱しています（`coefficient`・`Major0Minor1`・`art-length` の3行は、
 アプリ用に元データから Reita Tsutsumimoto が変換した値です）。アプリ・サウンドプログラム・変換ロジックは
 Reita Tsutsumimoto の制作です。
+
+**AIの利用について。** Pure Data パッチと変換ロジックは、私自身の設計です。C++ 部分（GUI、libpd との橋渡し、
+MIDI の後処理）と README は、AIアシスタント（Claude）の支援を受けて作成し、ビルドと動作確認は私が行いました。
 
 ## Usage
 
