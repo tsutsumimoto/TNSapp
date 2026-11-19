@@ -14,9 +14,12 @@ bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 ## Background and credits
 
 TNSapp was made for the score-music performance 書譜楽「歎異抄 No.18〜いはんや悪人をや〜
-Ver.2.0」 (the second of two events; organiser: 石川九楊傘寿記念祝賀会実行委員会), held
-for the Ishikawa Kyūyō exhibition. I have been involved in the development since the
-first event; this application was written for the second one.
+Ver.2.0」, held as the second part of the lecture and concert 石川九楊「書は音楽である」
+(13 November 2025, Former Tokyo Music School Sōgakudō, Ueno, Tokyo; organiser:
+石川九楊傘寿記念祝賀会実行委員会). "Ver.2.0" marks it as an updated version of the first
+performance of this series, held in 2024 (scores made from the data, played by a string
+quartet): the ensemble was extended to a piano quintet by adding a piano, and TNSapp was
+written as the tool for generating the scores.
 
 * **Measurement and analysis of the data** (`TNSapp/patches/abs/parameters_chapter*.txt`):
   Scott Allen and Latent Media Lab., Kyoto Seika University (Faculty of Media
@@ -26,6 +29,15 @@ first event; this application was written for the second one.
   the text2emotion values in the original data).
 * **Application, sound programming and the conversion logic** (everything else in
   this repository): Reita Tsutsumimoto.
+
+Event credits (as printed on the programme):
+
+* Measurement, analysis, quantification and application: Reita Tsutsumimoto, Scott Allen,
+  Latent Media Lab. (Image Expression Course, Department of Media Expression,
+  Faculty of Media Expression, Kyoto Seika University)
+* Supervision: Tetsuya Tsukada (塚田哲也), Institute of Writing Civilisation (一般財団法人文字文明研究所)
+* Production cooperation: Tokyo Concerts (東京コンサーツ)
+* Organiser: 石川九楊傘寿記念祝賀会実行委員会 (樂書會 / 一般財団法人文字文明研究所)
 
 **AI assistance.** The Pure Data patch and the conversion logic are my own design. The
 C++ part (GUI, libpd bridge, MIDI post-processing) and this README were written with the
@@ -39,11 +51,23 @@ Latent Media Lab.; it is included as a demonstration data set for the applicatio
 
 ---
 
-石川九楊展のための書譜楽「歎異抄 No.18 Ver.2.0」（全2回の第2回）用に制作しました。第1回から
-開発に関わっています。データの計測・解析は Scott Allen 氏と京都精華大学 Latent Media Lab.
+書譜楽「歎異抄 No.18〜いはんや悪人をや〜 Ver.2.0」のために制作しました。この演奏は、石川九楊
+「書は音楽である」講演会＆演奏会（2025年11月13日、旧東京音楽学校奏楽堂。主催：石川九楊傘寿記念祝賀会
+実行委員会）の第2部です。「Ver.2.0」は、2024年の第1回（データから楽譜を作り、弦楽四重奏で演奏した）を経た、
+アップデート版であることを表します。ピアノを加えてピアノ五重奏になり、楽譜を生成するツールとして
+TNSapp を制作しました。
+
+データの計測・解析は Scott Allen 氏と京都精華大学 Latent Media Lab.
 によるもので、許可を得て同梱しています（`coefficient`・`Major0Minor1`・`art-length` の3行は、
 アプリ用に元データから Reita Tsutsumimoto が変換した値です）。アプリ・サウンドプログラム・変換ロジックは
 Reita Tsutsumimoto の制作です。
+
+イベントのクレジット（当日の表記）：
+
+* 計測・解析・数値化・アプリ化：堤本禮太、スコット・アレン、京都精華大学メディア表現学部メディア表現学科イメージ表現専攻 Latent Media Lab.
+* 監修：塚田哲也（一般財団法人文字文明研究所）
+* 制作協力：東京コンサーツ
+* 主催：石川九楊傘寿記念祝賀会実行委員会（樂書會 ／ 一般財団法人文字文明研究所）
 
 **AIの利用について。** Pure Data パッチと変換ロジックは、私自身の設計です。C++ 部分（GUI、libpd との橋渡し、
 MIDI の後処理）と README は、AIアシスタント（Claude）の支援を受けて作成し、ビルドと動作確認は私が行いました。
