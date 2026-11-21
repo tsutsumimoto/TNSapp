@@ -1,11 +1,11 @@
 # TNSapp
 
-A macOS application (JUCE + libpd) that turns the stroke data of the Ishikawa
-Kyūyō exhibition into MIDI data for a string quartet and a piano. The musical logic lives in a Pure Data patch
+A macOS application (JUCE + libpd) that turns the stroke data of four chapters of
+Ishikawa Kyūyō's calligraphy work 歎異抄 No.18 into MIDI data for a string quartet and a piano. The musical logic lives in a Pure Data patch
 (`TNSapp/patches/main.pd`); the C++ part (`TNSapp/Source`) is the GUI and the
 bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 
-石川九楊展の筆跡データから、弦楽四重奏とピアノの MIDI データを生成する macOS アプリです。変換ロジックは Pure Data のパッチ
+石川九楊の書『歎異抄 No.18』のうち、4章分の筆跡データから、弦楽四重奏とピアノの MIDI データを生成する macOS アプリです。変換ロジックは Pure Data のパッチ
 (`TNSapp/patches/main.pd`)、C++ 側は GUI と libpd への橋渡しです。
 
 > A detailed description of how the input data is converted into the output will be
@@ -15,7 +15,7 @@ bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 
 TNSapp was made for the score-music performance 書譜楽「歎異抄 No.18〜いはんや悪人をや〜
 Ver.2.0」, held as the second part of the lecture and concert 石川九楊「書は音楽である」
-(13 November 2025, Former Tokyo Music School Sōgakudō, Ueno, Tokyo; organiser:
+(13 November 2025, 旧東京音楽学校奏楽堂, Ueno, Tokyo; organiser:
 石川九楊傘寿記念祝賀会実行委員会). "Ver.2.0" marks it as an updated version of the first
 performance of this series, held in 2024 (scores made from the data, played by a string
 quartet): the ensemble was extended to a piano quintet by adding a piano, and TNSapp was
@@ -23,7 +23,7 @@ written as the tool for generating the scores.
 
 * **Measurement and analysis of the data** (`TNSapp/patches/abs/parameters_chapter*.txt`):
   Scott Allen and Latent Media Lab., Kyoto Seika University (Faculty of Media
-  Expression). The data is included here with their permission. Three rows were
+  Creation). The data is included here with their permission. Three rows were
   derived by me for this application and are not part of the original data:
   `coefficient`, `Major0Minor1` and `art-length` (the last one is calculated from
   the text2emotion values in the original data).
@@ -33,10 +33,9 @@ written as the tool for generating the scores.
 Event credits (as printed on the programme):
 
 * Measurement, analysis, quantification and application: Reita Tsutsumimoto, Scott Allen,
-  Latent Media Lab. (Image Expression Course, Department of Media Expression,
-  Faculty of Media Expression, Kyoto Seika University)
-* Supervision: Tetsuya Tsukada (塚田哲也), Institute of Writing Civilisation (一般財団法人文字文明研究所)
-* Production cooperation: Tokyo Concerts (東京コンサーツ)
+  Latent Media Lab., 京都精華大学メディア表現学部メディア表現学科イメージ表現専攻
+* Supervision: 塚田哲也 (一般財団法人文字文明研究所)
+* Production cooperation: 東京コンサーツ
 * Organiser: 石川九楊傘寿記念祝賀会実行委員会 (樂書會 / 一般財団法人文字文明研究所)
 
 **AI assistance.** The Pure Data patch and the conversion logic are my own design. The
