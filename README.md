@@ -1,7 +1,7 @@
 # TNSapp
 
 A macOS application (JUCE + libpd) that turns the stroke data of four chapters of
-Ishikawa Kyūyō's calligraphy work 歎異抄 No.18 into MIDI data for a string quartet and a piano. The musical logic lives in a Pure Data patch
+Ishikawa Kyūyō's calligraphy work Tannisho No.18 (歎異抄 No.18) into MIDI data for a string quartet and a piano. The musical logic lives in a Pure Data patch
 (`TNSapp/patches/main.pd`); the C++ part (`TNSapp/Source`) is the GUI and the
 bridge to libpd. Samples are played by the ELSE `[sfz~]` object.
 
@@ -30,11 +30,11 @@ written as the tool for generating the scores.
 * **Application, sound programming and the conversion logic** (everything else in
   this repository): Reita Tsutsumimoto.
 
-Event credits (as printed on the programme):
+Event credits (based on the programme):
 
 * Measurement, analysis, quantification and application: Reita Tsutsumimoto, Scott Allen,
   Latent Media Lab., 京都精華大学メディア表現学部メディア表現学科イメージ表現専攻
-* Supervision: 塚田哲也 (一般財団法人文字文明研究所)
+* Supervision: Tetsuya Tsukada (塚田哲也), The Institute for the Writing and Civilization (一般財団法人文字文明研究所)
 * Production cooperation: 東京コンサーツ
 * Organiser: 石川九楊傘寿記念祝賀会実行委員会 (樂書會 / 一般財団法人文字文明研究所)
 
@@ -61,7 +61,7 @@ TNSapp を制作しました。
 アプリ用に元データから Reita Tsutsumimoto が変換した値です）。アプリ・サウンドプログラム・変換ロジックは
 Reita Tsutsumimoto の制作です。
 
-イベントのクレジット（当日の表記）：
+イベントのクレジット（当日の表記をもとにしています）：
 
 * 計測・解析・数値化・アプリ化：堤本禮太、スコット・アレン、京都精華大学メディア表現学部メディア表現学科イメージ表現専攻 Latent Media Lab.
 * 監修：塚田哲也（一般財団法人文字文明研究所）
@@ -79,7 +79,7 @@ the detailed conversion rules will be published separately.
 
 **Basic flow**
 
-1. Choose a **chapter** (第1章 / 第3章 / 第10章 / 結 = chapter 18).
+1. Choose a **chapter** (第1章 / 第3章 / 第10章 / 結).
 2. Choose which input drives which output in the **Parameter Sets** table
    (see below), the **Beat Variation** and the options.
 3. Press **Compile**. Nothing changes until you press it; every change of the
